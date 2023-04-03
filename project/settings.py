@@ -21,9 +21,9 @@ INSTALLED_APPS = [
     'django.contrib.sites', #django-allauth
 
     'rest_framework',  
+    'corsheaders',  
     'rest_framework.authtoken', 
     'dj_rest_auth', 
-    'corsheaders',  
     'allauth', #django-allauth
     'allauth.account', #django-allauth
     'allauth.socialaccount', #django-allauth
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     
     'storeLine.apps.StorelineConfig',
     'produit.apps.ProduitConfig',
+    'hundelreactdj.apps.HundelreactdjConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', #new
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
     ],
     'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
           'rest_framework.authentication.SessionAuthentication' ,

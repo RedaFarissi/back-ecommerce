@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.urls import path , include
-from produit.views import front 
+from hundelreactdj.views import front 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), 
     path("", front , name="front"),
     
     path("produit_api/", include('produit.urls') ),
