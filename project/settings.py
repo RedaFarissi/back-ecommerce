@@ -20,14 +20,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites', #django-allauth
 
-    'rest_framework',  
-    'corsheaders',  
-    'rest_framework.authtoken', 
-    'dj_rest_auth', 
+    'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     'allauth', #django-allauth
     'allauth.account', #django-allauth
     'allauth.socialaccount', #django-allauth
     'dj_rest_auth.registration', #django-allauth
+    
     
     'storeLine.apps.StorelineConfig',
     'produit.apps.ProduitConfig',
