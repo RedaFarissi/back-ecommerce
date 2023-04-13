@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -8,7 +9,7 @@ SECRET_KEY = 'django-insecure-rybwn0^2a#%cpit%q)0!&ain98k@x$z)k679h&q7#mn1ojykns
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 INSTALLED_APPS = [
@@ -23,7 +24,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
-    'rest_framework_simplejwt', 
     'dj_rest_auth',
     'allauth', #django-allauth
     'allauth.account', #django-allauth
@@ -59,18 +59,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
     ],
     'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication' , #new       
     ],
 }
-from datetime import timedelta
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-}
-
-
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #django-allauth
