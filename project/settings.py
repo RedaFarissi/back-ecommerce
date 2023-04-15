@@ -55,12 +55,12 @@ CORS_ORIGIN_WHITELIST = (
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
-        'rest_framework.authentication.TokenAuthentication' , #new       
-    ],
+    #'DEFAULT_PERMISSION_CLASSES': [
+    #    'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
+    #],
+    #'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
+    #    'rest_framework.authentication.TokenAuthentication' , #new       
+    #],
 }
 
 
