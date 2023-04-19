@@ -13,8 +13,6 @@ urlpatterns = [
     path("produit_api/", include('produit.urls') ),
     path("store/", include('storeLine.urls') ),
     
-    
-    
 
     path('auth/', include('rest_framework.urls')) ,
     path('rest-auth/', include('dj_rest_auth.urls')), 

@@ -1,12 +1,11 @@
+import os 
 from pathlib import Path
-import os
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-rybwn0^2a#%cpit%q)0!&ain98k@x$z)k679h&q7#mn1ojykns'                                                                                          
-
+SECRET_KEY = 'django-insecure-rybwn0^2a#%cpit%q)0!&ain98k@x$z)k679h&q7#mn1ojykns'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1']
@@ -55,12 +54,12 @@ CORS_ORIGIN_WHITELIST = (
 
 
 REST_FRAMEWORK = {
-    #'DEFAULT_PERMISSION_CLASSES': [
-    #    'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
-    #],
-    #'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
-    #    'rest_framework.authentication.TokenAuthentication' , #new       
-    #],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly', #new
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES' : [ #new
+        'rest_framework.authentication.TokenAuthentication' , #new       
+    ],
 }
 
 
