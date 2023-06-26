@@ -1,47 +1,39 @@
-from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import Produit , Category
-from .serializers import ProduitSerializer
+from .serializers import ProduitSerializer , CategorySerializer
 
 
-
-
-# جميع المنتجات
-class AllProfileAPIView(generics.ListAPIView): 
-    queryset = Produit.objects.all()
-    serializer_class = ProduitSerializer
+@api_view(['GET'])
+def index(request ) :
+    allProduct = Produit.objects.all()
+    allCategory = Category.objects.all()
+    bestDiscount = Produit.objects.raw('''SELECT id , ( %s - (price_reduction * %s / default_price)) AS porsontage FROM produit_produit ORDER BY(porsontage) DESC LIMIT 4''',[100,100])
+    lastFourProduit = Produit.objects.all().order_by('-id')[:4]
+    startFiveLastFour = Produit.objects.filter(start=Produit.GenereChoicesStart.five).order_by('-id')[:4]
+    dealOfDay = Produit.objects.raw('SELECT id , ( %s - (price_reduction * %s / default_price)) AS porsontage  FROM produit_produit ORDER BY(porsontage) DESC',[100,100])[:2]
+    lastProduitAfterFour = Produit.objects.raw('SELECT * FROM produit_produit WHERE id < (SELECT COUNT(id) - %s FROM produit_produit) ORDER BY id DESC',[3])[:8]
     
-# أحسن تخفيضات  
-class BestDiscountAPIView(generics.ListAPIView): 
-    queryset = Produit.objects.raw('''SELECT id , ( %s - (price_reduction * %s / default_price)) AS porsontage  
-                                   FROM produit_produit ORDER BY(porsontage) DESC LIMIT 4''',[100,100])
-    serializer_class = ProduitSerializer
+    # if category_slug:
+    #     category = Category.objects.get(slug=category_slug)
+    #     allProduct = Produit.objects.filter(category=category)
 
-# أخر المنتجات 
-class LastFourProduitAPIView(generics.ListAPIView): 
-    queryset = Produit.objects.all().order_by('-id')[:4]
-    serializer_class = ProduitSerializer
+    #context={'request': request} :  is use to can get the data from media in front.
+    content = {
+        'all_product': ProduitSerializer(allProduct, many=True , context={'request': request}).data ,
+        'all_category': CategorySerializer(allCategory , many=True).data  ,  
+        'best_discount': ProduitSerializer(bestDiscount, many=True , context={'request': request}).data ,
+        'last_four_produit': ProduitSerializer(lastFourProduit, many=True ,context={'request': request}).data ,
+        'start_five_last_four': ProduitSerializer(startFiveLastFour, many=True , context={'request': request}).data ,
+        'deal_of_day' : ProduitSerializer(dealOfDay, many=True , context={'request': request}).data ,
+        'last_produit_after_four' : ProduitSerializer(lastProduitAfterFour, many=True , context={'request': request} ).data ,
+    } 
+    return Response(content)
 
-# الأعلى تقييما 
-class StartFiveLastFourAPIView(generics.ListAPIView):
-    queryset = Produit.objects.filter(start=Produit.GenereChoicesStart.five).order_by('-id')[:4]
-    serializer_class = ProduitSerializer
-
-# صفقة اليوم 
-class DealOfDayAPIView(generics.ListAPIView):
-    queryset = Produit.objects.raw('SELECT id , ( %s - (price_reduction * %s / default_price)) AS porsontage  FROM produit_produit ORDER BY(porsontage) DESC',[100,100])[:2]
-    serializer_class = ProduitSerializer
-
-# منتجات جديدة
-class LastProduitAfterFourAPIView(generics.ListAPIView):  
-    queryset = Produit.objects.raw('SELECT * FROM produit_produit WHERE id < (SELECT COUNT(id) - %s FROM produit_produit) ORDER BY id DESC',[3])[:8]
-    serializer_class = ProduitSerializer 
-    
-# each Category
-class EachCategoryAPIView(generics.ListAPIView):  
-    serializer_class =  ProduitSerializer
-    def get(self,request,name):  
-        category_name = Category.objects.get(name=name)
-        type_content = Produit.objects.filter(category=category_name)
-        queryset = type_content.values('id','image','title','description','start','default_price','price_reduction','the_number_of_pieces','Offer_ends_after',)
-        return Response({'products': queryset})
+@api_view(['GET'])
+def detail(request , category_slug=None) :
+    category = Category.objects.get(slug=category_slug)
+    allProduct = Produit.objects.filter(category=category)
+    return Response({
+        'all_product':ProduitSerializer(allProduct ,many=True , context={'request': request}).data ,
+    })

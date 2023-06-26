@@ -59,5 +59,5 @@ class Produit(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category , self).save(*args, **kwargs)
+        self.slug = slugify(self.title)
+        super(Produit, self).save(*args, **kwargs)

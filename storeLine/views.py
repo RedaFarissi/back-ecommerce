@@ -1,5 +1,5 @@
 from rest_framework import generics 
-from django.http import JsonResponse , HttpResponse
+from django.http import  HttpResponse
 from .models import Store
 from .serializers import StoreSerializer
 from rest_framework.permissions import IsAuthenticated

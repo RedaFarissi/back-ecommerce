@@ -50,6 +50,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = ( 
     'http://localhost:8000', 
     'http://localhost:3000', 
+    'http://192.168.1.109:3000',
 )
 
 
@@ -130,4 +131,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/' 
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
