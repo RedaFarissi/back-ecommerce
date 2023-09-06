@@ -7,13 +7,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path("", front , name="front"),
-    
     path("produit_api/", include('produit.urls') ),
-    path("store/", include('storeLine.urls') ),
-    
-
+    path("cart/", include('cart.urls') ),
+    path('create_post/' , include('createPost.urls') ),
+    path('order/' , include('order.urls') ),
+    path('payment/' , include('payment.urls') ),
     path('auth/', include('rest_framework.urls')) ,
+    #login using API
     path('rest-auth/', include('dj_rest_auth.urls')), 
+    #Create Account using API 
     path('rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 ]
 

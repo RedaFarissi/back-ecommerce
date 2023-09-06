@@ -39,8 +39,6 @@ class Produit(models.Model):
     start = models.CharField(max_length=13 , choices=GenereChoicesStart.choices , default=GenereChoicesStart.five)
     default_price = models.PositiveIntegerField(default=1)
     price_reduction = models.PositiveIntegerField(default=1)
-    the_number_of_pieces = models.PositiveIntegerField(default=1)
-    remize_day = models.DateField(default=timezone.now , verbose_name="The Offer Ends After")
     category = models.ForeignKey(Category, on_delete=models.CASCADE , default=1 , verbose_name="Choice your Category") 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -61,3 +59,14 @@ class Produit(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Produit, self).save(*args, **kwargs)
+     
+    def total_likes(self):
+        return self.like_set.count()
+
+    def is_liked_by_user(self, user):
+        return Like.objects.filter(user=user, produit=self).exists()
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

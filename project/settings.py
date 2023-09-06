@@ -29,9 +29,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount', #django-allauth
     'dj_rest_auth.registration', #django-allauth
     
-    
-    'storeLine.apps.StorelineConfig',
+    'createPost.apps.CreatepostConfig',
+    'payment.apps.PaymentConfig',
     'produit.apps.ProduitConfig',
+    'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
     'hundelreactdj.apps.HundelreactdjConfig',
 ]
 
@@ -47,11 +49,19 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
+
 CORS_ORIGIN_WHITELIST = ( 
     'http://localhost:8000', 
     'http://localhost:3000', 
     'http://192.168.1.109:3000',
 )
+
+#to use session between django and react without any issue.
+CORS_ALLOW_CREDENTIALS = True
+
+# Session settings
+SESSION_SAVE_EVERY_REQUEST = True 
+SESSION_COOKIE_SAMESITE = None
 
 
 REST_FRAMEWORK = {
@@ -65,10 +75,8 @@ REST_FRAMEWORK = {
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #django-allauth
+
 SITE_ID = 1 #django-allauth
-
-
-
 
 ROOT_URLCONF = 'project.urls'
 
@@ -87,6 +95,7 @@ TEMPLATES = [
         },
     },
 ]
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'front', 'build', 'static')]
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -99,21 +108,11 @@ DATABASES = {
 }
 
 
-
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {  'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    {  'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    {  'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    {  'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 
@@ -132,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYPAL_CLIENT_ID = 'ARC9EimTFv6eHfgZ-2cib8KaE3dzTVwyPuLkxxbmJArgO7jfQvtDXo9eoc7chCcYrR_Tc2hroOAfV-SF'
+PAYPAL_CLIENT_SECRET = 'ECKBMwmITpmzOiO_UpfYbuKyWJj2tvRmKpBkR33gf8xNenWQJh4t8nvI166zNbsVONgaynlbg6-L2hgk'
