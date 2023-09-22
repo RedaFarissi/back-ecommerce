@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'order.apps.OrderConfig',
     'hundelreactdj.apps.HundelreactdjConfig',
+    'testApi.apps.TestapiConfig',
 ]
 
 MIDDLEWARE = [

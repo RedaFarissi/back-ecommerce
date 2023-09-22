@@ -4,19 +4,20 @@ from .models import Produit , Category , Like
 from .serializers import ProduitSerializer , CategorySerializer 
 from django.shortcuts import get_object_or_404 
 # from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated , AllowAny
 from rest_framework.authentication import TokenAuthentication
 from django.http import JsonResponse
 from django.db.models import Count
 from django.db.models import Q
 from datetime import  date
 
+
+
+
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication]) 
-
+@permission_classes([AllowAny])
 def index(request):
-
-
     #get date to last product created 
     last_product_query = Produit.objects.latest('created_at')
     last_product_date = last_product_query.created_at
@@ -51,6 +52,7 @@ def index(request):
     lastProduitAfterFour = Produit.objects.raw('SELECT * FROM produit_produit WHERE id < (SELECT COUNT(id) - %s FROM produit_produit) ORDER BY id DESC',[3])[:8]
     top_4_products_has_liked = Produit.objects.filter(available=True).annotate(like_count=Count('like')).order_by('-like_count')[:4]
     
+
     content = {
         'all_product': ProduitSerializer(allProduct, many=True , context={'request': request}).data ,
         'all_category': CategorySerializer(allCategory , many=True).data  ,  

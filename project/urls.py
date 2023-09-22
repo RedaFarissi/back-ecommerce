@@ -12,6 +12,8 @@ urlpatterns = [
     path('create_post/' , include('createPost.urls') ),
     path('order/' , include('order.urls') ),
     path('payment/' , include('payment.urls') ),
+    path('test_api/' , include('testApi.urls') ),
+    
     path('auth/', include('rest_framework.urls')) ,
     #login using API
     path('rest-auth/', include('dj_rest_auth.urls')), 
