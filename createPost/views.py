@@ -14,7 +14,7 @@ from rest_framework.exceptions import ValidationError
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def products_created_by_user(request):
-    products = Produit.objects.filter(author=request.user)
+    products = Produit.objects.filter(author=request.user).reverse()
     return Response({"produits_user": ProduitSerializer(products, many=True , context={'request': request}).data}, status=status.HTTP_201_CREATED)
 
 

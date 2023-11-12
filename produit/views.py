@@ -37,7 +37,7 @@ def index(request):
         FROM produit_produit 
         WHERE available=TRUE 
         ORDER BY porsontage  DESC 
-        LIMIT 6''',[100,100])
+        LIMIT 8''',[100,100])
     lastFourProduit = Produit.objects.all().order_by('-id')[:4]
     startFiveLastFour = Produit.objects.filter(start=Produit.GenereChoicesStart.five).order_by('-id')[:4]
     

@@ -20,7 +20,12 @@ def order_create(request):
             price_reduction = product['price_reduction']
             quantity = cart_item['quantity']
             product_instance = Produit.objects.get(id=product['id'])
-            OrderItem.objects.create(order=order, product=product_instance, price=price_reduction, quantity=quantity)
+            OrderItem.objects.create(
+                order=order, 
+                product=product_instance, 
+                price=price_reduction, 
+                quantity=quantity
+            )
             
         if 'cart' in request.session :
             del request.session['cart']

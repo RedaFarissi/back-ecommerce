@@ -51,11 +51,11 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = ( 
+CORS_ORIGIN_WHITELIST = (  
     'http://localhost:8000', 
     'http://localhost:3000', 
-    'http://192.168.1.109:3000',
 )
+
 
 #to use session between django and react without any issue.
 CORS_ALLOW_CREDENTIALS = True

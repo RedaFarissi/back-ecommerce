@@ -45,13 +45,10 @@ def cart_update_quantity(request, id , quantity ):
 @permission_classes([AllowAny])
 def cart_remove(request, id):
     cart = request.session.get('cart' , {})
-
     if str(id) in cart:
         del cart[str(id)]
-        
     # Save the modified cart in the session
     request.session["cart"] = cart
-
     return Response({"cart": True})
 
 @api_view(['GET'])
