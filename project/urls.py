@@ -22,7 +22,7 @@ urlpatterns = [
     path('rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     
     path("", front , name="front"), #Connect with default Route in React
-    path('<path:route>/', front), #Connect with another route in React
+    #path('<path:route>/', front), #Connect with another route in React
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

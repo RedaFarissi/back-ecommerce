@@ -104,4 +104,16 @@ def add_like(request , id ,slug):
 def product_liked(request, product_id):
     product = Produit.objects.get(id=product_id)
     like = Like.objects.filter(user=request.user, produit=product).exists()
-    return Response({"is_like":like})
+    return Response({"is_like": like})
+
+
+@api_view(["POST","GET"])
+@authentication_classes([TokenAuthentication]) 
+@permission_classes([AllowAny]) 
+def search_feature(request):
+    if request.method == "POST":
+        search = request.POST.get('search', '')
+        search = Produit.objects.filter(title__icontains=search)
+        return Response({"search": ProduitSerializer(search ,many=True , context={'request': request}).data })
+    else:
+        return Response({"search": False })
