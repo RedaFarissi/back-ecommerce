@@ -6,10 +6,10 @@
 pip install virtualenv 
  
 ### To create virtualenv , run :
-python -m virtualenv env_Name
+python -m virtualenv env-back-ecommerce
 
-### To change directory to env_Name , run :
-cd env_Name
+### To change directory to env-back-ecommerce , run :
+cd env-back-ecommerce
 
 
 ### To activate virtualenv , run :
