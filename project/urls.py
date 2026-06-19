@@ -1,11 +1,11 @@
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path , include , re_path
 from hundelreactdj.views import front 
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.contrib.staticfiles.views import serve
 
+from django.views.generic import TemplateView   # new
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
@@ -23,6 +23,10 @@ urlpatterns = [
     
     path("", front , name="front"), #Connect with default Route in React
     #path('<path:route>/', front), #Connect with another route in React
+
+    # Catch all other routes and serve React index.html
+    # you can go to all route manualy 
+    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name='index.html'), name='react_frontend'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
