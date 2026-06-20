@@ -96,15 +96,7 @@ docker-compose up --build
 
 https://github.com/RedaFarissi/front-ecommerce
 
-## Screenshots
 
-Add screenshots of:
-
-* API endpoints
-* Admin dashboard
-* Product management
-* Orders
-* Cart operations
 
 ## Author
 
