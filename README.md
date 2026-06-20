@@ -1,5 +1,7 @@
 # E-Commerce Backend API
 
+Django REST Framework E-Commerce Backend API with JWT Authentication, Cart, Orders and Docker Support.
+
 A full-featured e-commerce backend built with Django and Django REST Framework. This project provides RESTful APIs for product management, shopping cart operations, order processing, and payment integration.
 
 ## Features
@@ -95,16 +97,6 @@ docker-compose up --build
 ## Frontend Repository
 
 https://github.com/RedaFarissi/front-ecommerce
-
-## Screenshots
-
-Add screenshots of:
-
-* API endpoints
-* Admin dashboard
-* Product management
-* Orders
-* Cart operations
 
 ## Author
 
