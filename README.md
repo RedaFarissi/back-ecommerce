@@ -1,28 +1,103 @@
-# To run this project use step bootom
+# E-Commerce Backend API
 
-### install python 
+Django REST Framework E-Commerce Backend API with JWT Authentication, Cart, Orders and Docker Support.
 
-### To install virtualenv , run :
-pip install virtualenv 
- 
-### To create virtualenv , run :
-python -m virtualenv env-back-ecommerce
+A full-featured e-commerce backend built with Django and Django REST Framework. This project provides RESTful APIs for product management, shopping cart operations, order processing, and payment integration.
 
-### To change directory to env-back-ecommerce , run :
-cd env-back-ecommerce
+## Features
 
+* Product management
+* Shopping cart functionality
+* Order management
+* Payment processing
+* RESTful API architecture
+* Media upload support
+* Docker support
+* Frontend integration with React
+* SQLite database (development)
 
-### To activate virtualenv , run :
-.\\Scripts\activate 
+## Tech Stack
 
-### To clone project from github , run :
+* Python
+* Django
+* Django REST Framework
+* SQLite
+* Docker
+* REST API
+
+## Project Structure
+
+```text
+cart/          -> Shopping cart management
+order/         -> Order processing
+payment/       -> Payment management
+produit/       -> Product management
+media/         -> Uploaded files
+```
+
+## Installation
+
+### Clone Repository
+
+```bash
 git clone https://github.com/RedaFarissi/back-ecommerce.git
-
-### To change directory to project clone from github , run :
 cd back-ecommerce
+```
 
-### To install all packages used , run :
+### Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### Activate Environment
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Linux / Mac:
+
+```bash
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-### to run project , use :
+### Run Migrations
+
+```bash
+python manage.py migrate
+```
+
+### Start Server
+
+```bash
 python manage.py runserver
+```
+
+Server:
+
+```text
+http://127.0.0.1:8000/
+```
+
+## Docker
+
+```bash
+docker-compose up --build
+```
+
+## Frontend Repository
+
+https://github.com/RedaFarissi/front-ecommerce
+
+## Author
+
+Reda Eskouni
