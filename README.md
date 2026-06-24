@@ -37,14 +37,6 @@ media/         -> Uploaded files
 
 ## Installation
 
-### Clone Repository
-
-```bash
-git clone https://github.com/RedaFarissi/back-ecommerce.git
-cd back-ecommerce
-```
-
-
 ### Install python 3.11
   * <a href="https://www.python.org/downloads/windows/" > Install python 3.11 </a>
   * Add python.exe to PATH
@@ -67,6 +59,12 @@ Linux / Mac:
 
 ```bash
 source venv/bin/activate
+```
+### Clone Repository
+
+```bash
+git clone https://github.com/RedaFarissi/back-ecommerce.git
+cd back-ecommerce
 ```
 
 ### Install Dependencies
