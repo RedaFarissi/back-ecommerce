@@ -47,7 +47,7 @@ cd back-ecommerce
 ### Create Virtual Environment
 
 ```bash
-python -m venv venv
+python -3.11 -m venv env-back-ecommerce
 ```
 
 ### Activate Environment
